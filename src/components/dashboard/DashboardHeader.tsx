@@ -55,7 +55,7 @@ export default function DashboardHeader({ userInitials, userName }: Props) {
         <Link href="/dashboard" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <div style={{
             width: 24, height: 24, borderRadius: 5,
-            background: "linear-gradient(135deg, #0ea5e9, #38bdf8)",
+            background: "linear-gradient(135deg, #6c47ff, #8060ff)",
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.25} style={{ width: 13, height: 13 }}>
@@ -117,7 +117,7 @@ export default function DashboardHeader({ userInitials, userName }: Props) {
             style={{
               width: 30, height: 30,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #0ea5e9, #0284c7)",
+              background: "linear-gradient(135deg, #6c47ff, #4c26e0)",
               display: "flex", alignItems: "center", justifyContent: "center",
               color: "white", fontSize: 11, fontWeight: 700,
               cursor: "pointer", border: "none",

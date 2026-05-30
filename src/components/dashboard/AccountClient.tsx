@@ -21,7 +21,7 @@ export default function AccountClient({ name, email }: Props) {
     setTimeout(() => setSaved(false), 2000);
   }
 
-  const inputCls = "w-full px-3.5 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500";
+  const inputCls = "w-full px-3.5 py-2.5 border border-slate-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500";
 
   return (
     <div className="space-y-10">
@@ -55,7 +55,7 @@ export default function AccountClient({ name, email }: Props) {
         </div>
       </div>
 
-      <div className="border-t border-slate-100 dark:border-slate-800" />
+      <div className="border-t border-slate-100 dark:border-[var(--border)]" />
 
       {/* Email */}
       <div className="flex flex-col sm:flex-row sm:items-start gap-6">
@@ -69,12 +69,12 @@ export default function AccountClient({ name, email }: Props) {
             value={email}
             readOnly
             style={{ color: undefined, backgroundColor: undefined, WebkitTextFillColor: undefined }}
-            className="w-full px-3.5 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl text-sm cursor-not-allowed bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400"
+            className="w-full px-3.5 py-2.5 border border-slate-200 dark:border-[var(--border)] rounded-xl text-sm cursor-not-allowed bg-slate-50 dark:bg-[var(--surface)]/55 text-slate-500 dark:text-slate-400"
           />
         </div>
       </div>
 
-      <div className="border-t border-slate-100 dark:border-slate-800" />
+      <div className="border-t border-slate-100 dark:border-[var(--border)]" />
 
       {/* Delete */}
       <div className="flex flex-col sm:flex-row sm:items-start gap-6">
@@ -83,7 +83,7 @@ export default function AccountClient({ name, email }: Props) {
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">This is a danger zone — Be careful!</p>
         </div>
         <div className="flex-1">
-          <div className="border-2 border-red-200 dark:border-red-900/50 bg-white dark:bg-slate-900 rounded-2xl p-5">
+          <div className="border-2 border-red-200 dark:border-red-900/50 bg-white dark:bg-[var(--surface)] rounded-2xl p-5">
             <div className="flex items-center gap-3 mb-3">
               <p className="font-semibold text-slate-900 dark:text-slate-100">Are you sure?</p>
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2.5 py-1 rounded-full">

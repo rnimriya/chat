@@ -10,7 +10,7 @@ const TABS: { key: Tab; label: string; icon: React.ReactNode }[] = [
   { key: "text", label: "Paste text", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z" /></svg> },
 ];
 
-const inputCls = "w-full px-3.5 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500";
+const inputCls = "w-full px-3.5 py-2.5 border border-slate-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
 
 export default function TrainClient({ botId, initialChunkCount }: { botId: string; initialChunkCount: number }) {
   const [tab, setTab] = useState<Tab>("url");
@@ -48,8 +48,8 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
   return (
     <div className="space-y-5">
       {/* Status card */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 flex items-center gap-4 transition-colors">
-        <div className="w-12 h-12 rounded-xl bg-sky-500 flex items-center justify-center shadow-lg shadow-sky-200 dark:shadow-violet-900/30 shrink-0">
+      <div className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-slate-200 dark:border-[var(--border)] p-5 flex items-center gap-4 transition-colors">
+        <div className="w-12 h-12 rounded-xl bg-[var(--accent)] flex items-center justify-center shadow-lg shadow-[var(--accent)]/15 dark:shadow-[var(--accent)]/30 shrink-0">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.75} className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
           </svg>
@@ -63,12 +63,12 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
       </div>
 
       {/* Training panel */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
+      <div className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-slate-200 dark:border-[var(--border)] overflow-hidden transition-colors">
         {/* Tabs */}
-        <div className="flex border-b border-slate-100 dark:border-slate-800 px-1 pt-1 gap-1">
+        <div className="flex border-b border-slate-100 dark:border-[var(--border)] px-1 pt-1 gap-1">
           {TABS.map((t) => (
             <button key={t.key} onClick={() => { setTab(t.key); setError(""); setResult(null); }}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-all border-b-2 ${tab === t.key ? "bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400 border-sky-500" : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 border-transparent"}`}>
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-t-lg transition-all border-b-2 ${tab === t.key ? "bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15 text-[var(--accent)] border-[var(--accent)]" : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 border-transparent"}`}>
               {t.icon}{t.label}
             </button>
           ))}
@@ -87,13 +87,13 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Upload a file</label>
               <div
-                className={`relative border-2 border-dashed rounded-2xl p-10 text-center transition-colors ${file ? "border-sky-300 dark:border-sky-500 bg-sky-50 dark:bg-sky-900/20" : "border-slate-200 dark:border-slate-700 hover:border-sky-300 dark:hover:border-sky-500"}`}
+                className={`relative border-2 border-dashed rounded-2xl p-10 text-center transition-colors ${file ? "border-[var(--accent)]/40 dark:border-[var(--accent)]/60 bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15" : "border-slate-200 dark:border-[var(--border)] hover:border-[var(--accent)]/60 dark:hover:border-[var(--accent)]/80"}`}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) setFile(f); }}
               >
                 {file ? (
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-sky-500 flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--accent)] flex items-center justify-center mx-auto mb-3">
                       <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.75} className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
                     </div>
                     <div className="font-semibold text-slate-900 dark:text-slate-100 text-sm">{file.name}</div>
@@ -102,13 +102,13 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
                   </div>
                 ) : (
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-[var(--surface)] flex items-center justify-center mx-auto mb-3">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6 text-slate-500 dark:text-slate-400"><path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" /></svg>
                     </div>
                     <div className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Drag & drop your file here</div>
                     <div className="text-xs text-slate-400 dark:text-slate-500">PDF, DOCX, TXT · Max 10MB</div>
                     <label className="mt-3 inline-block cursor-pointer">
-                      <span className="text-sm text-sky-500 dark:text-sky-400 font-semibold hover:text-sky-600">Or browse to upload</span>
+                      <span className="text-sm text-[var(--accent)] dark:text-sky-400 font-semibold hover:opacity-90">Or browse to upload</span>
                       <input type="file" accept=".pdf,.docx,.doc,.txt" onChange={(e) => setFile(e.target.files?.[0] || null)} className="hidden" />
                     </label>
                   </div>
@@ -147,7 +147,7 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
           )}
 
           <button onClick={handleTrain} disabled={loading}
-            className="mt-5 w-full inline-flex items-center justify-center gap-2 bg-sky-500 text-white font-semibold py-2.5 rounded-xl hover:bg-sky-600 disabled:opacity-60 transition-colors">
+            className="mt-5 w-full inline-flex items-center justify-center gap-2 bg-[var(--accent)] text-white font-semibold py-2.5 rounded-xl hover:opacity-90 disabled:opacity-60 transition-colors">
             {loading ? (
               <><svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>Processing...</>
             ) : tab === "url" ? "Scrape & train" : "Train on this content"}

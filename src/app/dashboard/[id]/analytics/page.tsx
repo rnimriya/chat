@@ -25,8 +25,8 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
   });
 
   const stats = [
-    { label: "Total messages", value: messages.length, bg: "bg-sky-50 dark:bg-indigo-900/20", text: "text-sky-500 dark:text-sky-400", num: "text-sky-600 dark:text-indigo-300" },
-    { label: "Unique sessions", value: sessions.length, bg: "bg-sky-50 dark:bg-sky-900/20", text: "text-sky-500 dark:text-sky-400", num: "text-sky-600 dark:text-sky-300" },
+    { label: "Total messages", value: messages.length, bg: "bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15", text: "text-[var(--accent)]", num: "text-[var(--accent)] font-extrabold" },
+    { label: "Unique sessions", value: sessions.length, bg: "bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15", text: "text-[var(--accent)]", num: "text-[var(--accent)] font-extrabold" },
     { label: "User questions", value: userMessages.length, bg: "bg-blue-50 dark:bg-blue-900/20", text: "text-blue-600 dark:text-blue-400", num: "text-blue-700 dark:text-blue-300" },
     { label: "Leads captured", value: leads.length, bg: "bg-emerald-50 dark:bg-emerald-900/20", text: "text-emerald-600 dark:text-emerald-400", num: "text-emerald-700 dark:text-emerald-300" },
   ];
@@ -34,7 +34,7 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
   return (
     <div className="px-8 py-8 max-w-4xl">
       <div className="mb-7">
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">{bot.name} <span className="text-sky-500 dark:text-sky-400">Analytics</span></h1>
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">{bot.name} <span className="text-[var(--accent)]">Analytics</span></h1>
         <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Overview of your chatbot&apos;s performance</p>
       </div>
 
@@ -48,13 +48,13 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
       </div>
 
       {days.length > 0 && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 mb-6 transition-colors">
+        <div className="bg-white dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] rounded-2xl p-6 mb-6 transition-colors">
           <h2 className="font-bold text-slate-900 dark:text-slate-100 mb-5 text-sm">Messages per day <span className="text-slate-400 dark:text-slate-500 font-normal">(last 14 days)</span></h2>
           <div className="flex items-end gap-1.5 h-36">
             {days.map((day) => (
               <div key={day} className="flex-1 flex flex-col items-center gap-1.5">
                 <div className="relative flex-1 w-full flex items-end">
-                  <div className="w-full rounded-t-lg bg-sky-400 hover:bg-sky-500 transition-colors" style={{ height: `${Math.max(6, ((dailyCounts[day] || 0) / maxCount) * 100)}%` }} title={`${dailyCounts[day] || 0} messages`} />
+                  <div className="w-full rounded-t-lg bg-[var(--accent)] hover:opacity-90 transition-colors" style={{ height: `${Math.max(6, ((dailyCounts[day] || 0) / maxCount) * 100)}%` }} title={`${dailyCounts[day] || 0} messages`} />
                 </div>
                 <span className="text-[10px] text-slate-400 font-medium">{day.slice(5)}</span>
               </div>
@@ -64,16 +64,16 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
       )}
 
       {leads.length > 0 && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 mb-6 transition-colors">
+        <div className="bg-white dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] rounded-2xl p-6 mb-6 transition-colors">
           <h2 className="font-bold text-slate-900 dark:text-slate-100 mb-4 text-sm flex items-center gap-2">Captured leads <span className="text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full">{leads.length}</span></h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead><tr className="text-xs text-slate-400 dark:text-slate-500 border-b border-slate-100 dark:border-slate-800">
+              <thead><tr className="text-xs text-slate-400 dark:text-slate-500 border-b border-slate-100 dark:border-[var(--border)]">
                 <th className="text-left pb-3 font-semibold pr-4">Name</th><th className="text-left pb-3 font-semibold pr-4">Email</th><th className="text-left pb-3 font-semibold pr-4">Phone</th><th className="text-left pb-3 font-semibold">Date</th>
               </tr></thead>
-              <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+              <tbody className="divide-y divide-slate-50 dark:divide-[var(--border)]">
                 {leads.slice().reverse().map((lead) => (
-                  <tr key={lead.id} className="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                  <tr key={lead.id} className="hover:bg-slate-50 dark:hover:bg-[var(--surface)] transition-colors">
                     <td className="py-3 pr-4 text-slate-800 dark:text-slate-200 font-medium">{lead.name || "—"}</td>
                     <td className="py-3 pr-4 text-slate-700 dark:text-slate-300">{lead.email || "—"}</td>
                     <td className="py-3 pr-4 text-slate-500 dark:text-slate-400">{lead.phone || "—"}</td>
@@ -86,19 +86,19 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
         </div>
       )}
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 transition-colors">
+      <div className="bg-white dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] rounded-2xl p-6 transition-colors">
         <h2 className="font-bold text-slate-900 dark:text-slate-100 mb-4 text-sm">Recent sessions</h2>
         {recentSessions.length === 0 ? (
           <p className="text-center py-10 text-slate-400 dark:text-slate-500 text-sm">No sessions yet. Embed your bot to start collecting conversations.</p>
         ) : (
           <div className="space-y-2.5">
             {recentSessions.map((s) => (
-              <div key={s.sessionId} className="flex items-start justify-between gap-3 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+              <div key={s.sessionId} className="flex items-start justify-between gap-3 p-3.5 rounded-xl bg-slate-50 dark:bg-[var(--surface)] hover:bg-slate-100 dark:hover:bg-[var(--border)] transition-colors">
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-slate-700 dark:text-slate-300 font-medium truncate">{s.preview}</p>
                   <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{s.startedAt ? formatDate(s.startedAt) : "unknown"}</p>
                 </div>
-                <span className="text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 px-2.5 py-1 rounded-full shrink-0 font-medium">{s.messageCount} msgs</span>
+                <span className="text-xs bg-white dark:bg-[var(--bg)] border border-slate-200 dark:border-[var(--border)] text-slate-500 dark:text-slate-400 px-2.5 py-1 rounded-full shrink-0 font-medium">{s.messageCount} msgs</span>
               </div>
             ))}
           </div>

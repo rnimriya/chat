@@ -24,7 +24,7 @@ export default function ConversationsChart({ data, bots }: Props) {
   const xLabels = data.filter((_, i) => i % 2 === 0);
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden transition-colors">
+    <div className="bg-white dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] rounded-2xl overflow-hidden transition-colors">
       <div className="flex items-start justify-between px-6 pt-5 pb-4">
         <div>
           <h3 className="font-bold text-slate-900 dark:text-slate-100 text-base">Conversations</h3>
@@ -33,7 +33,7 @@ export default function ConversationsChart({ data, bots }: Props) {
         <select
           value={selected}
           onChange={(e) => setSelected(e.target.value)}
-          className="text-sm border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
+          className="text-sm border border-slate-200 dark:border-[var(--border)] rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-slate-900 dark:text-slate-100"
         >
           <option value="all">All Chatbots</option>
           {bots.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
@@ -71,7 +71,7 @@ export default function ConversationsChart({ data, bots }: Props) {
         </svg>
       </div>
 
-      <div className="flex items-center justify-between px-6 py-3 border-t border-slate-100 dark:border-slate-800">
+      <div className="flex items-center justify-between px-6 py-3 border-t border-slate-100 dark:border-[var(--border)]">
         <span className="text-sm text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1.5">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />

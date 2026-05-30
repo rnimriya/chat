@@ -25,16 +25,16 @@ export default function BillingToggle() {
   return (
     <div>
       <div className="flex items-center mb-8">
-        <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-full p-0.5 gap-0.5">
+        <div className="flex items-center bg-slate-100 dark:bg-[var(--surface)] rounded-full p-0.5 gap-0.5">
           <button
             onClick={() => setBilling("yearly")}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${billing === "yearly" ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400"}`}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${billing === "yearly" ? "bg-white dark:bg-[var(--border)] shadow-sm text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400"}`}
           >
             Yearly (-20%)
           </button>
           <button
             onClick={() => setBilling("monthly")}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${billing === "monthly" ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm" : "text-slate-500 dark:text-slate-400"}`}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${billing === "monthly" ? "bg-[var(--accent)] dark:bg-white text-white dark:text-slate-900 shadow-sm" : "text-slate-500 dark:text-slate-400"}`}
           >
             Monthly
           </button>
@@ -45,10 +45,10 @@ export default function BillingToggle() {
         {plans.map((plan) => (
           <div
             key={plan.id}
-            className={`rounded-2xl p-6 flex flex-col bg-white dark:bg-slate-900 transition-colors ${
+            className={`rounded-2xl p-6 flex flex-col bg-white dark:bg-[var(--surface)] transition-colors ${
               plan.highlight
-                ? "border-2 border-sky-400 dark:border-sky-400"
-                : "border border-slate-200 dark:border-slate-800"
+                ? "border-2 border-[var(--accent)] dark:border-[var(--accent)]"
+                : "border border-slate-200 dark:border-[var(--border)]"
             }`}
           >
             <p className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-widest mb-3">{plan.name}</p>
@@ -59,7 +59,7 @@ export default function BillingToggle() {
             <ul className="space-y-2.5 mb-6 flex-1">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth={2.5} className="w-4 h-4 shrink-0 mt-0.5">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth={2.5} className="w-4 h-4 shrink-0 mt-0.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                   {f}
@@ -74,7 +74,7 @@ export default function BillingToggle() {
                 </li>
               ))}
             </ul>
-            <button className="w-full py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-transparent">
+            <button className="w-full py-2.5 rounded-xl border border-slate-200 dark:border-[var(--border)] text-slate-900 dark:text-slate-100 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-[var(--border)] transition-colors bg-white dark:bg-transparent">
               Upgrade
             </button>
           </div>

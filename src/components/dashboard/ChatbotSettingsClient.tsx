@@ -11,15 +11,15 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
   return (
     <button
       type="button" role="switch" aria-checked={checked} onClick={() => onChange(!checked)}
-      className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 ${checked ? "bg-sky-500" : "bg-slate-200 dark:bg-zinc-700"}`}
+      className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 ${checked ? "bg-[var(--accent)]" : "bg-slate-200 dark:bg-zinc-700"}`}
     >
       <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out ${checked ? "translate-x-5" : "translate-x-0"}`} />
     </button>
   );
 }
 
-const card = "bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 space-y-5 transition-colors";
-const inputCls = "w-full px-3.5 py-2.5 border border-zinc-200 dark:border-zinc-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
+const card = "bg-white dark:bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-[var(--border)] p-6 space-y-5 transition-colors";
+const inputCls = "w-full px-3.5 py-2.5 border border-zinc-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
 const labelCls = "block text-sm font-medium text-zinc-700 dark:text-slate-300 mb-1.5";
 const sectionTitle = "font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2";
 
@@ -56,7 +56,7 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
   return (
     <div className="space-y-5">
       {/* Header card */}
-      <div className="flex items-center justify-between bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5 transition-colors">
+      <div className="flex items-center justify-between bg-white dark:bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] p-5 transition-colors">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm" style={{ backgroundColor: form.color }}>
             {form.name.charAt(0).toUpperCase() || "?"}
@@ -70,7 +70,7 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
           </div>
         </div>
         <button onClick={handleSave} disabled={saving}
-          className={`inline-flex items-center gap-2 font-semibold px-4 py-2 rounded-xl text-sm transition-all ${saved ? "bg-emerald-600 text-white" : "bg-sky-500 text-white hover:bg-sky-600"} disabled:opacity-60`}>
+          className={`inline-flex items-center gap-2 font-semibold px-4 py-2 rounded-xl text-sm transition-all ${saved ? "bg-emerald-600 text-white" : "bg-[var(--accent)] text-white hover:opacity-90"} disabled:opacity-60`}>
           {saving ? <><svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>Saving...</>
           : saved ? <><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>Saved</>
           : "Save changes"}
@@ -143,13 +143,13 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
             {embedCopied ? "Copied!" : "Copy"}
           </button>
         </div>
-        <a href={`/chat/${bot.id}`} target="_blank" className="inline-flex items-center gap-1.5 text-sm text-sky-500 dark:text-sky-400 hover:text-sky-600 dark:hover:text-sky-300 font-semibold transition-colors">
+        <a href={`/chat/${bot.id}`} target="_blank" className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:opacity-90 font-semibold transition-colors">
           Preview chat page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-3.5 h-3.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
         </a>
       </div>
 
       {/* Danger zone */}
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-red-200 dark:border-red-900/50 p-6 transition-colors">
+      <div className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-red-200 dark:border-red-900/50 p-6 transition-colors">
         <h2 className="font-bold text-red-600 dark:text-red-400 mb-1.5">Danger zone</h2>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Permanently removes all training data and chat history.</p>
         <button onClick={handleDelete} disabled={deleting}
