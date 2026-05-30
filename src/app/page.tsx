@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FaqAccordion from "@/components/FaqAccordion";
+import BillingToggle from "@/components/dashboard/BillingToggle";
 
 /* ── Trusted logos ─── */
 const logos = [
@@ -85,7 +86,7 @@ export default function LandingPage() {
 
           <div className="hidden md:flex items-center gap-6">
             {["Features", "Pricing", "FAQ", "Blog"].map((l) => (
-              <a key={l} href={l === "FAQ" ? "#faq" : "#"} className="text-zinc-400 hover:text-white text-sm font-medium transition-colors">{l}</a>
+              <a key={l} href={l === "FAQ" ? "#faq" : l === "Pricing" ? "#pricing" : l === "Features" ? "#features" : "#"} className="text-zinc-400 hover:text-white text-sm font-medium transition-colors">{l}</a>
             ))}
           </div>
 
@@ -286,6 +287,18 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ═══ PRICING ════════════════════════════════════════════════ */}
+      <section className="bg-zinc-50 dark:bg-[var(--surface)] py-24 border-b border-zinc-100 dark:border-[var(--border)]" id="pricing">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--accent)] mb-4">Pricing</div>
+            <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-3">Upgrade Your Plan</h2>
+            <p className="text-zinc-500 dark:text-zinc-400 text-lg max-w-xl mx-auto">Choose the plan that best fits your needs</p>
+          </div>
+          <BillingToggle />
+        </div>
+      </section>
+
       {/* ═══ FAQ ════════════════════════════════════════════════════ */}
       <section className="bg-white py-24" id="faq">
         <div className="max-w-2xl mx-auto px-6">
@@ -302,7 +315,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-4 gap-8">
           <div className="sm:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0ea5e9, #38bdf8)" }}>
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #6c47ff, #8060ff)" }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} className="w-3.5 h-3.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" /></svg>
               </div>
               <span className="font-bold text-white text-sm">PaperChat</span>
@@ -316,7 +329,13 @@ export default function LandingPage() {
             <div key={col.heading}>
               <h4 className="text-white text-xs font-semibold uppercase tracking-widest mb-3">{col.heading}</h4>
               <ul className="space-y-2">
-                {col.links.map((l) => <li key={l}><a href="#" className="text-zinc-500 hover:text-zinc-300 text-sm transition-colors">{l}</a></li>)}
+                {col.links.map((l) => (
+                  <li key={l}>
+                    <a href={l === "FAQ" ? "#faq" : l === "Pricing" ? "#pricing" : l === "Features" ? "#features" : "#"} className="text-zinc-500 hover:text-zinc-300 text-sm transition-colors">
+                      {l}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}

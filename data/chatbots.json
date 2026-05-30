@@ -28,5 +28,20 @@
     "createdAt": "2026-05-30T19:16:36.828Z",
     "updatedAt": "2026-05-30T19:16:36.828Z",
     "chunkCount": 0
+  },
+  {
+    "userId": "53ycgj7y8ckmpsqd1d5",
+    "name": "Calcunit",
+    "description": "",
+    "color": "#6366f1",
+    "welcomeMessage": "Hi! How can I help you today?",
+    "systemPrompt": "You are a helpful customer support assistant. Be friendly, concise, and accurate.",
+    "collectLeads": false,
+    "humanHandover": false,
+    "humanHandoverEmail": "",
+    "id": "k8p9i7uxaibmpssl2vq",
+    "createdAt": "2026-05-30T20:17:14.198Z",
+    "updatedAt": "2026-05-30T20:17:14.201Z",
+    "chunkCount": 0
   }
 ]
