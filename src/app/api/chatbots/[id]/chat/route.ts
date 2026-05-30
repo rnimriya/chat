@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Chatbots, Messages, Leads } from "@/lib/db";
-import { getEmbedding, chatCompletion } from "@/lib/openai";
+import { Chatbots, Messages, Leads, ContentGaps } from "@/lib/db";
+import { getEmbedding, chatCompletionWithTools, analyzeSentiment } from "@/lib/openai";
+import { chatbotTools, executeChatbotTool } from "@/lib/tools";
 import { searchChunks } from "@/lib/vectorStore";
 import { generateId } from "@/lib/utils";
 
@@ -14,6 +15,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 
   const sessionId = incomingSession || generateId();
 
+  // Save lead details if provided (includes conversational pre-chat qualification fields)
   if (leadData && bot.collectLeads) {
     Leads.create({
       chatbotId: id,
@@ -21,17 +23,64 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       name: leadData.name || "",
       email: leadData.email || "",
       phone: leadData.phone || "",
+      budget: leadData.budget || "",
+      company: leadData.company || "",
+      useCase: leadData.useCase || "",
     });
   }
 
-  Messages.create({ chatbotId: id, sessionId, role: "user", content: message });
+  // Create user message
+  const userMsg = Messages.create({ chatbotId: id, sessionId, role: "user", content: message });
 
+  // 1. Module 4 Feature A: Sentiment Analysis
+  const sentiment = await analyzeSentiment(message);
+  Messages.updateSentiment(userMsg.id, sentiment);
+
+  // RAG embedding context lookup
   const queryEmbedding = await getEmbedding(message);
   const relevantChunks = searchChunks(id, queryEmbedding, 5);
   const context = relevantChunks.map((c) => c.text).join("\n\n---\n\n");
 
-  const replyText = await chatCompletion(bot.systemPrompt, history, context);
+  // Format history messages for GPT API
+  const gptHistory = [
+    ...history.map((h: any) => ({ role: h.role, content: h.content })),
+    { role: "user", content: message }
+  ];
 
+  // 2. Module 1: AI Tools Execution
+  let replyText = "";
+  try {
+    const aiResponse = await chatCompletionWithTools(bot.systemPrompt, gptHistory, context, chatbotTools);
+
+    if (aiResponse.tool_calls && aiResponse.tool_calls.length > 0) {
+      const toolCall = aiResponse.tool_calls[0];
+      const toolName = toolCall.function.name;
+      const args = JSON.parse(toolCall.function.arguments);
+
+      // Execute appropriate backend action tool
+      const toolResult = await executeChatbotTool(id, sessionId, toolName, args);
+      replyText = toolResult.message;
+    } else {
+      replyText = aiResponse.content || "I'm sorry, I couldn't generate a response.";
+    }
+  } catch (openaiErr) {
+    console.error("OpenAI chat completion / tool call failed:", openaiErr);
+    replyText = "I'm sorry, the request timed out. Please try again soon.";
+  }
+
+  // 3. Module 4 Feature B: Content Gap logging
+  const replyLower = replyText.toLowerCase();
+  const isGap = replyLower.includes("don't have that information") || 
+                replyLower.includes("don't know") || 
+                replyLower.includes("do not know") || 
+                replyLower.includes("no information in my knowledge") ||
+                replyLower.includes("suggest contacting support");
+
+  if (isGap) {
+    ContentGaps.create({ chatbotId: id, question: message });
+  }
+
+  // Create assistant message response
   Messages.create({ chatbotId: id, sessionId, role: "assistant", content: replyText });
 
   return NextResponse.json({ reply: replyText, sessionId });

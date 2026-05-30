@@ -106,6 +106,7 @@ export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
   timestamp: string;
+  sentiment?: "positive" | "neutral" | "frustrated"; // Module 4 Sentiment Analysis
   leadData?: { name?: string; email?: string; phone?: string };
 }
 
@@ -120,6 +121,14 @@ export const Messages = {
     writeJSON("messages.json", msgs);
     return msg;
   },
+  updateSentiment: (id: string, sentiment: "positive" | "neutral" | "frustrated"): ChatMessage | null => {
+    const msgs = Messages.all();
+    const idx = msgs.findIndex((m) => m.id === id);
+    if (idx === -1) return null;
+    msgs[idx] = { ...msgs[idx], sentiment };
+    writeJSON("messages.json", msgs);
+    return msgs[idx];
+  }
 };
 
 // ─── Lead types ───────────────────────────────────────────────────────────────
@@ -131,6 +140,9 @@ export interface Lead {
   name: string;
   email: string;
   phone: string;
+  budget?: string;   // Module 2 Lead Qualification
+  company?: string;  // Module 2 Lead Qualification
+  useCase?: string;  // Module 2 Lead Qualification
   capturedAt: string;
 }
 
@@ -144,4 +156,94 @@ export const Leads = {
     writeJSON("leads.json", leads);
     return lead;
   },
+};
+
+// ─── Booking types (Module 1 Scheduling) ──────────────────────────────────────────
+
+export interface Booking {
+  id: string;
+  chatbotId: string;
+  sessionId: string;
+  name: string;
+  email: string;
+  date: string;
+  notes?: string;
+  calendlyId?: string;
+  createdAt: string;
+}
+
+export const Bookings = {
+  all: (): Booking[] => readJSON<Booking[]>("bookings.json"),
+  byChatbot: (chatbotId: string) => Bookings.all().filter((b) => b.chatbotId === chatbotId),
+  create: (data: Omit<Booking, "id" | "createdAt">): Booking => {
+    const bookings = Bookings.all();
+    const booking: Booking = { ...data, id: generateId(), createdAt: new Date().toISOString() };
+    bookings.push(booking);
+    writeJSON("bookings.json", bookings);
+    return booking;
+  }
+};
+
+// ─── Stripe Log types (Module 1 Checkout) ─────────────────────────────────────────
+
+export interface StripeLog {
+  id: string;
+  chatbotId: string;
+  sessionId: string;
+  stripeLink: string;
+  amount: number;
+  status: "pending" | "paid";
+  createdAt: string;
+}
+
+export const StripeLogs = {
+  all: (): StripeLog[] => readJSON<StripeLog[]>("stripe_logs.json"),
+  byChatbot: (chatbotId: string) => StripeLogs.all().filter((s) => s.chatbotId === chatbotId),
+  create: (data: Omit<StripeLog, "id" | "createdAt">): StripeLog => {
+    const logs = StripeLogs.all();
+    const log: StripeLog = { ...data, id: generateId(), createdAt: new Date().toISOString() };
+    logs.push(log);
+    writeJSON("stripe_logs.json", logs);
+    return log;
+  }
+};
+
+// ─── Content Gap types (Module 4 Analysis) ───────────────────────────────────────
+
+export interface ContentGap {
+  id: string;
+  chatbotId: string;
+  question: string;
+  similarity?: string;
+  count: number;
+  resolved: boolean;
+  createdAt: string;
+}
+
+export const ContentGaps = {
+  all: (): ContentGap[] => readJSON<ContentGap[]>("content_gaps.json"),
+  byChatbot: (chatbotId: string) => ContentGaps.all().filter((c) => c.chatbotId === chatbotId),
+  create: (data: Omit<ContentGap, "id" | "count" | "resolved" | "createdAt">): ContentGap => {
+    const gaps = ContentGaps.all();
+    const gap: ContentGap = { ...data, id: generateId(), count: 1, resolved: false, createdAt: new Date().toISOString() };
+    gaps.push(gap);
+    writeJSON("content_gaps.json", gaps);
+    return gap;
+  },
+  increment: (id: string): ContentGap | null => {
+    const gaps = ContentGaps.all();
+    const idx = gaps.findIndex((g) => g.id === id);
+    if (idx === -1) return null;
+    gaps[idx].count += 1;
+    writeJSON("content_gaps.json", gaps);
+    return gaps[idx];
+  },
+  resolve: (id: string): ContentGap | null => {
+    const gaps = ContentGaps.all();
+    const idx = gaps.findIndex((g) => g.id === id);
+    if (idx === -1) return null;
+    gaps[idx].resolved = true;
+    writeJSON("content_gaps.json", gaps);
+    return gaps[idx];
+  }
 };

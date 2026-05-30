@@ -1,0 +1,99 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  plan         String    @default("free") // "free", "pro"
+  chatbots     Chatbot[]
+}
+
+model Chatbot {
+  id                 String       @id @default(uuid())
+  userId             String
+  user               User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name               String
+  description        String?
+  color              String       @default("#6c47ff")
+  welcomeMessage     String       @default("Hi! How can I help you today?")
+  systemPrompt       String
+  collectLeads       Boolean      @default(false)
+  humanHandover      Boolean      @default(false)
+  humanHandoverEmail String?
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  messages           Message[]
+  leads              Lead[]
+  bookings           Booking[]
+  stripeCheckoutLogs StripeLog[]
+  contentGaps        ContentGap[]
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  chatbotId  String
+  chatbot    Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  sessionId  String
+  role       String   // "user", "assistant"
+  content    String
+  timestamp  DateTime @default(now())
+  sentiment  String?  // "positive", "neutral", "frustrated" (Module 4)
+}
+
+model Lead {
+  id         String   @id @default(uuid())
+  chatbotId  String
+  chatbot    Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  sessionId  String
+  name       String
+  email      String
+  phone      String?
+  budget     String?  // Module 2 Feature C Qualification
+  company    String?  // Module 2 Feature C Qualification
+  useCase    String?  // Module 2 Feature C Qualification
+  capturedAt DateTime @default(now())
+}
+
+model Booking {
+  id          String   @id @default(uuid())
+  chatbotId   String
+  chatbot     Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  sessionId   String
+  name        String
+  email       String
+  date        DateTime
+  notes       String?
+  calendlyId  String?  // Mock integration reference (Module 1)
+  createdAt   DateTime @default(now())
+}
+
+model StripeLog {
+  id          String   @id @default(uuid())
+  chatbotId   String
+  chatbot     Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  sessionId   String
+  stripeLink  String
+  amount      Int
+  status      String   // "pending", "paid" (Module 1)
+  createdAt   DateTime @default(now())
+}
+
+model ContentGap {
+  id          String   @id @default(uuid())
+  chatbotId   String
+  chatbot     Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  question    String
+  similarity  String?  // Group reference
+  count       Int      @default(1)
+  resolved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
