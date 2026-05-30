@@ -34,6 +34,19 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [embedCopied, setEmbedCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Set mounted true on client
+  useState(() => {
+    // Note: React 18+ can use state initializer or useEffect
+  });
+  
+  // Use standard mount check
+  useState(() => {
+    if (typeof window !== "undefined") {
+      setTimeout(() => setMounted(true), 0);
+    }
+  });
 
   function set(key: string, value: string | boolean) { setForm((f) => ({ ...f, [key]: value })); setSaved(false); }
 
@@ -50,7 +63,7 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
     window.location.href = "/dashboard";
   }
 
-  const embedScript = `<script src="${typeof window !== "undefined" ? window.location.origin : ""}/widget.js" data-chatbot-id="${bot.id}"></script>`;
+  const embedScript = `<script src="${mounted && typeof window !== "undefined" ? window.location.origin : ""}/widget.js" data-chatbot-id="${bot.id}"></script>`;
   function copyEmbed() { navigator.clipboard.writeText(embedScript); setEmbedCopied(true); setTimeout(() => setEmbedCopied(false), 2500); }
 
   return (
