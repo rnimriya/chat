@@ -1,0 +1,32 @@
+[
+  {
+    "userId": "x1hoekb4mkjmpsm404u",
+    "name": "leadbhai",
+    "description": "capture lead online",
+    "color": "#06b6d4",
+    "welcomeMessage": "Hi! How can I help you today?",
+    "systemPrompt": "You are a helpful customer support assistant. Be friendly, concise, and accurate.",
+    "collectLeads": true,
+    "humanHandover": false,
+    "humanHandoverEmail": "",
+    "id": "7jauk25at7cmpsm586x",
+    "createdAt": "2026-05-30T17:16:56.889Z",
+    "updatedAt": "2026-05-30T17:16:56.889Z",
+    "chunkCount": 0
+  },
+  {
+    "userId": "53ycgj7y8ckmpsqd1d5",
+    "name": "Ring Back Support",
+    "description": "",
+    "color": "#6366f1",
+    "welcomeMessage": "Hi! How can I help you today?",
+    "systemPrompt": "You are a helpful customer support assistant. Be friendly, concise, and accurate.",
+    "collectLeads": false,
+    "humanHandover": false,
+    "humanHandoverEmail": "",
+    "id": "kf0altkd7pmpsqf49o",
+    "createdAt": "2026-05-30T19:16:36.828Z",
+    "updatedAt": "2026-05-30T19:16:36.828Z",
+    "chunkCount": 0
+  }
+]
