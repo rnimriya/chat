@@ -78,7 +78,7 @@ export default async function DashboardPage() {
           <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">Dashboard</h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Welcome back! Here&apos;s an overview of your chatbot performance.</p>
         </div>
-        <Link href="/dashboard/chatbots" className="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-slate-700 dark:hover:bg-slate-200 transition-colors">
+        <Link href="/dashboard/chatbots" className="btn-secondary !py-2 !px-4 !text-xs !rounded-lg">
           Manage Chatbots
         </Link>
       </div>

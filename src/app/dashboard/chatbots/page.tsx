@@ -18,7 +18,7 @@ export default async function ChatbotsPage() {
             {bots.length === 0 ? "No chatbots yet" : `${bots.length} chatbot${bots.length !== 1 ? "s" : ""} · ${bots.filter((b) => b.chunkCount > 0).length} trained`}
           </p>
         </div>
-        <Link href="/dashboard/new" className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-zinc-700 dark:hover:bg-zinc-100 transition-colors flex items-center gap-1.5">
+        <Link href="/dashboard/new" className="btn-primary !py-2 !px-4 !text-xs !rounded-lg flex items-center gap-1.5">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
           New chatbot
         </Link>
@@ -31,7 +31,7 @@ export default async function ChatbotsPage() {
           </div>
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">No chatbots yet</h2>
           <p className="text-zinc-500 dark:text-zinc-400 mb-6 text-sm max-w-xs mx-auto">Create your first chatbot and train it on your website or documents.</p>
-          <Link href="/dashboard/new" className="inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold px-6 py-2.5 rounded-xl hover:bg-zinc-700 dark:hover:bg-zinc-100 transition-colors">Create your first chatbot</Link>
+          <Link href="/dashboard/new" className="btn-primary">Create your first chatbot</Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

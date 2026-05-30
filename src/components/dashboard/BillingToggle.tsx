@@ -74,7 +74,7 @@ export default function BillingToggle() {
                 </li>
               ))}
             </ul>
-            <button className="w-full py-2.5 rounded-xl border border-slate-200 dark:border-[var(--border)] text-slate-900 dark:text-slate-100 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-[var(--border)] transition-colors bg-white dark:bg-transparent">
+            <button className={plan.highlight ? "btn-primary w-full" : "btn-secondary w-full"}>
               Upgrade
             </button>
           </div>

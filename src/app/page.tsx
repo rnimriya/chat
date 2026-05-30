@@ -285,7 +285,7 @@ export default function LandingPage() {
             </Link>
             <Link
               href="/signup"
-              className="bg-[#6c47ff] hover:bg-[#5832e6] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all shadow-sm"
+              className="btn-primary !py-1.5 !px-4 !text-xs !rounded-lg"
             >
               Sign up
             </Link>
@@ -321,13 +321,13 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/signup"
-                className="bg-[#6c47ff] hover:bg-[#5832e6] text-white font-semibold px-6 py-3.5 rounded-xl transition-all shadow-md text-base"
+                className="btn-primary !text-base !py-3 !px-6"
               >
-                Start building free
+                Start building for free
               </Link>
               <a
                 href="#features"
-                className="text-zinc-500 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white border border-zinc-200 dark:border-[var(--border)] px-6 py-3.5 rounded-xl font-semibold transition-colors bg-white/50 dark:bg-transparent backdrop-blur-sm"
+                className="btn-secondary !text-base !py-3 !px-6"
               >
                 Explore features
               </a>
@@ -516,7 +516,7 @@ export default function LandingPage() {
         <div className="relative text-center px-6">
           <h2 className="text-4xl font-extrabold text-white tracking-tight mb-4">Ready to automate your support?</h2>
           <p className="text-zinc-400 text-lg mb-8 max-w-lg mx-auto">Join thousands of companies saving hours every single day.</p>
-          <Link href="/signup" className="inline-flex items-center gap-2 bg-[#6c47ff] hover:bg-[#5832e6] text-white font-bold px-8 py-4 rounded-xl transition-all text-base shadow-lg">
+          <Link href="/signup" className="btn-primary !py-3.5 !px-8 !text-base">
             Create your first chatbot
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
           </Link>
