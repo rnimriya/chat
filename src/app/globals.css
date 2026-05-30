@@ -19,18 +19,24 @@
   --text-2:    #52525b;
   --text-3:    #a1a1aa;
   --accent:    #6c47ff; /* Clerk Purple */
+  --grid-line: rgba(108, 71, 255, 0.035);
+  --glow-1:    rgba(108, 71, 255, 0.08);
+  --glow-2:    rgba(108, 71, 255, 0.03);
 }
 
 .dark {
   /* Clerk-exact dark palette */
-  --bg:        #000000;   /* page background — pure black  */
-  --surface:   #0a0a0c;   /* card / elevated surface            */
+  --bg:        #09090b;   /* Clerk dark page background */
+  --surface:   #131316;   /* card / elevated surface            */
   --border:    #1e1f24;   /* default border — very subtle       */
   --border-hi: #2e3036;   /* stronger border on hover/focus     */
   --text-1:    #ffffff;   /* primary text — pure white          */
   --text-2:    #9b9ba6;   /* secondary / body text              */
   --text-3:    #6b6b76;   /* muted / metadata                   */
   --accent:    #6c47ff;   /* Clerk Purple                       */
+  --grid-line: rgba(108, 71, 255, 0.05);
+  --glow-1:    rgba(108, 71, 255, 0.12);
+  --glow-2:    rgba(108, 71, 255, 0.04);
 }
 
 /* ── Base reset ─────────────────────────────────────────────── */
@@ -38,7 +44,14 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle at 50% 0px, var(--glow-1) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, var(--glow-2) 0%, transparent 40%),
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  background-attachment: fixed;
   color: var(--text-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -32,13 +32,13 @@ export default function FaqAccordion() {
       {faqs.map((faq, i) => (
         <div
           key={i}
-          className="border border-slate-200 rounded-xl overflow-hidden bg-white"
+          className="border border-slate-200 dark:border-[var(--border)] rounded-xl overflow-hidden bg-white dark:bg-[var(--surface)]"
         >
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-slate-50 transition-colors"
+            className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-slate-50 dark:hover:bg-[var(--border)] transition-colors"
           >
-            <span className="font-medium text-slate-900 text-sm sm:text-base">{faq.q}</span>
+            <span className="font-medium text-slate-900 dark:text-slate-100 text-sm sm:text-base">{faq.q}</span>
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -50,7 +50,7 @@ export default function FaqAccordion() {
             </svg>
           </button>
           {openIndex === i && (
-            <div className="px-6 pb-5 pt-1 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
+            <div className="px-6 pb-5 pt-1 text-slate-600 dark:text-slate-300 text-sm leading-relaxed border-t border-slate-100 dark:border-[var(--border)]">
               {faq.a}
             </div>
           )}
