@@ -29,7 +29,7 @@
   /* Clerk-exact dark palette */
   --bg: #131316;
   /* Clerk dark page background */
-  --surface: #131316;
+  --surface: #18181b;
   /* card / elevated surface            */
   --border: #1e1f24;
   /* default border — very subtle       */
@@ -46,6 +46,10 @@
   --grid-line: rgba(108, 71, 255, 0.05);
   --glow-1: rgba(108, 71, 255, 0.12);
   --glow-2: rgba(108, 71, 255, 0.04);
+}
+
+.dark h1 {
+  color: #ffffff !important;
 }
 
 /* ── Base reset ─────────────────────────────────────────────── */

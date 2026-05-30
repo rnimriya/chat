@@ -36,8 +36,7 @@ export default async function ChatbotsPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {bots.map((bot) => (
-            <div key={bot.id} className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-              <div className="h-1.5" style={{ backgroundColor: bot.color }} />
+            <div key={bot.id} className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
               <div className="p-5">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
