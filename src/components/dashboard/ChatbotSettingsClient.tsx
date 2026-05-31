@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Chatbot } from "@/lib/db";
 
 const COLOR_OPTIONS = [
@@ -36,17 +36,9 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
   const [embedCopied, setEmbedCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Set mounted true on client
-  useState(() => {
-    // Note: React 18+ can use state initializer or useEffect
-  });
-  
-  // Use standard mount check
-  useState(() => {
-    if (typeof window !== "undefined") {
-      setTimeout(() => setMounted(true), 0);
-    }
-  });
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   function set(key: string, value: string | boolean) { setForm((f) => ({ ...f, [key]: value })); setSaved(false); }
 
