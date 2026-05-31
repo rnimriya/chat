@@ -24,7 +24,7 @@ export default function ConversationsChart({ data, bots }: Props) {
   const xLabels = data.filter((_, i) => i % 2 === 0);
 
   return (
-    <div className="bg-white dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] rounded-2xl overflow-hidden transition-colors">
+    <div className="bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] rounded-2xl overflow-hidden transition-colors">
       <div className="flex items-start justify-between px-6 pt-5 pb-4">
         <div>
           <h3 className="font-bold text-slate-900 dark:text-slate-100 text-base">Conversations</h3>
@@ -33,7 +33,7 @@ export default function ConversationsChart({ data, bots }: Props) {
         <select
           value={selected}
           onChange={(e) => setSelected(e.target.value)}
-          className="text-sm border border-slate-200 dark:border-[var(--border)] rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-slate-900 dark:text-slate-100"
+          className="text-sm border border-slate-200 dark:border-[var(--border)] rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-[var(--surface)] text-slate-900 dark:text-slate-100"
         >
           <option value="all">All Chatbots</option>
           {bots.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}

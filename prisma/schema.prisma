@@ -18,35 +18,83 @@ model User {
 }
 
 model Chatbot {
-  id                 String       @id @default(uuid())
+  id                 String            @id @default(uuid())
   userId             String
-  user               User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   name               String
   description        String?
-  color              String       @default("#6c47ff")
-  welcomeMessage     String       @default("Hi! How can I help you today?")
+  color              String            @default("#6c47ff")
+  welcomeMessage     String            @default("Hi! How can I help you today?")
   systemPrompt       String
-  collectLeads       Boolean      @default(false)
-  humanHandover      Boolean      @default(false)
+  collectLeads       Boolean           @default(false)
+  humanHandover      Boolean           @default(false)
   humanHandoverEmail String?
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
   messages           Message[]
   leads              Lead[]
   bookings           Booking[]
   stripeCheckoutLogs StripeLog[]
   contentGaps        ContentGap[]
+  
+  // Phase 2 additions
+  copilotMode        Boolean           @default(false)
+  knowledgeSources   KnowledgeSource[]
+  integrations       Integration[]
+  chatSessions       ChatSession[]
 }
 
 model Message {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   chatbotId  String
-  chatbot    Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  chatbot    Chatbot     @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
   sessionId  String
-  role       String   // "user", "assistant"
+  session    ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role       String      // "user", "assistant"
   content    String
-  timestamp  DateTime @default(now())
-  sentiment  String?  // "positive", "neutral", "frustrated" (Module 4)
+  timestamp  DateTime    @default(now())
+  sentiment  String?     // "positive", "neutral", "frustrated"
+  
+  // Phase 2 additions
+  imageUrl   String?
+  isDraft    Boolean     @default(false)
+}
+
+model ChatSession {
+  id           String    @id // sessionId
+  chatbotId    String
+  chatbot      Chatbot   @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  customerData String?   // JSON payload (name, order history)
+  discountInfo String?   // JSON tracking discounts (limit 15%)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  messages     Message[]
+}
+
+model KnowledgeSource {
+  id          String   @id @default(uuid())
+  chatbotId   String
+  chatbot     Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  type        String   // "url", "file", "text", "youtube", "notion"
+  sourceUrl   String?
+  title       String?
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Integration {
+  id            String   @id @default(uuid())
+  chatbotId     String
+  chatbot       Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  platform      String   // "notion", "google_drive"
+  accessToken   String
+  workspaceId   String?
+  workspaceName String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([chatbotId, platform])
 }
 
 model Lead {
