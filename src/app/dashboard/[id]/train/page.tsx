@@ -14,8 +14,8 @@ export default async function TrainPage({ params }: { params: Promise<{ id: stri
   return (
     <div className="px-8 py-8 max-w-2xl">
       <div className="mb-7">
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
-          {bot.name} <span className="text-sky-500">Knowledge</span>
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          {bot.name} Knowledge
         </h1>
         <p className="text-slate-500 text-sm mt-1">
           {chunkCount > 0 ? `${chunkCount} knowledge chunks indexed` : "No training data yet — add a source below"}

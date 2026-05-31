@@ -3,8 +3,8 @@ export default function ApiKeysPage() {
     <div className="px-8 py-8 max-w-4xl">
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
-            API <span className="text-sky-500 dark:text-sky-400">Keys</span>
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            API Keys
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
             Manage API keys for external integrations like WordPress, custom apps, and more.

@@ -345,7 +345,7 @@ export default function LandingPage() {
 
           {/* Right: Live Interactive Chat Widget Emulator */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-[370px] bg-white dark:bg-[#131316] rounded-2xl border border-zinc-200 dark:border-[var(--border)] overflow-hidden shadow-2xl transition-all">
+            <div className="relative mx-auto max-w-[370px] bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-[var(--border)] overflow-hidden shadow-2xl transition-all">
               
               {/* Header */}
               <div className="px-5 py-4 bg-gradient-to-br from-[#6c47ff] to-[#8060ff] text-white flex items-center justify-between">
@@ -394,7 +394,7 @@ export default function LandingPage() {
                       key={item.q}
                       onClick={() => handleSimulateQuestion(item.q, item.reply)}
                       disabled={typing || chatMessages.some((msg) => msg.text === item.q)}
-                      className="text-[10px] px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:border-[#6c47ff] hover:text-[#6c47ff] dark:hover:text-[#a38fff] disabled:opacity-40 transition-all font-medium"
+                      className="text-[10px] px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-[var(--surface)] text-slate-700 dark:text-zinc-300 hover:border-[var(--border-hi)] hover:text-[#6c47ff] dark:hover:text-[#a38fff] disabled:opacity-40 transition-all font-medium"
                     >
                       {item.q}
                     </button>
@@ -435,9 +435,9 @@ export default function LandingPage() {
               <button
                 key={item.name}
                 onClick={() => setActiveFrame(item)}
-                className={`flex items-center gap-3 p-4 rounded-xl border text-left transition-all bg-white dark:bg-[#131316] ${
+                className={`flex items-center gap-3 p-4 rounded-xl border text-left transition-all bg-[var(--surface)] ${
                   activeFrame.name === item.name
-                    ? "border-[#6c47ff] shadow-sm text-slate-900 dark:text-white ring-1 ring-[#6c47ff]"
+                    ? "border-[var(--border-hi)] shadow-sm text-slate-900 dark:text-white ring-1 ring-[var(--border-hi)]"
                     : "border-zinc-200 dark:border-[var(--border)] text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700"
                 }`}
               >
@@ -477,7 +477,7 @@ export default function LandingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
-              <div key={f.title} className="bg-white dark:bg-[var(--surface)] rounded-2xl p-6 border border-zinc-200 dark:border-[var(--border)] hover:border-[#6c47ff]/50 dark:hover:border-[#6c47ff]/50 transition-all duration-200 group">
+              <div key={f.title} className="bg-[var(--surface)] rounded-2xl p-6 border border-zinc-200 dark:border-[var(--border)] hover:border-[var(--border-hi)] dark:hover:border-[var(--border-hi)] transition-all duration-200 group">
                 <div className={`w-10 h-10 rounded-xl bg-[#6c47ff] flex items-center justify-center mb-5 shadow-sm`}>{f.icon}</div>
                 <h3 className="font-bold text-slate-900 dark:text-white mb-2 text-sm sm:text-base">{f.title}</h3>
                 <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed">{f.desc}</p>

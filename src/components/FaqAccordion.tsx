@@ -32,7 +32,7 @@ export default function FaqAccordion() {
       {faqs.map((faq, i) => (
         <div
           key={i}
-          className="border border-slate-200 dark:border-[var(--border)] rounded-xl overflow-hidden bg-white dark:bg-[var(--surface)]"
+          className="border border-slate-200 dark:border-[var(--border)] rounded-xl overflow-hidden bg-[var(--surface)]"
         >
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}

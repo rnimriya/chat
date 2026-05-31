@@ -44,8 +44,8 @@ export default function NewChatbotPage() {
     <div className="px-8 py-8 max-w-3xl">
       <div className="flex items-start justify-between mb-10">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight leading-tight">
-            Set up your <span className="text-sky-500 dark:text-sky-400">chatbot</span>
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Set up your chatbot
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">Start with the basics. You can change everything later.</p>
         </div>
@@ -68,7 +68,7 @@ export default function NewChatbotPage() {
 
       <form onSubmit={handleContinue} className="space-y-8">
         {error && (
-          <div className="flex items-center gap-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 text-sm px-4 py-3 rounded-xl">
+          <div className="flex items-center gap-2 bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] text-red-600 dark:text-red-400 text-sm px-4 py-3 rounded-xl">
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0">
               <path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 1.999-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.501-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
             </svg>

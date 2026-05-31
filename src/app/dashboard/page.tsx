@@ -31,41 +31,41 @@ export default async function DashboardPage() {
       label: "Credits",
       value: String(creditsRemaining),
       sub: "Available for chatbot responses",
-      light: "bg-amber-50",
-      dark: "dark:bg-amber-900/20",
-      textColor: "text-amber-600 dark:text-amber-400",
-      numColor: "text-amber-700 dark:text-amber-300",
+      light: "bg-slate-50 border border-slate-200",
+      dark: "dark:bg-[var(--surface)] dark:border-[var(--border)]",
+      textColor: "text-slate-500 dark:text-slate-400",
+      numColor: "text-slate-900 dark:text-slate-100",
     },
     {
       label: "Chatbots",
       value: `${bots.length} / ${FREE_LIMITS.chatbots}`,
       sub: `${Math.round((bots.length / FREE_LIMITS.chatbots) * 100)}% of total capacity used`,
-      light: "bg-blue-50",
-      dark: "dark:bg-blue-900/20",
-      textColor: "text-blue-600 dark:text-blue-400",
-      numColor: "text-blue-700 dark:text-blue-300",
+      light: "bg-slate-50 border border-slate-200",
+      dark: "dark:bg-[var(--surface)] dark:border-[var(--border)]",
+      textColor: "text-slate-500 dark:text-slate-400",
+      numColor: "text-slate-900 dark:text-slate-100",
       progress: bots.length / FREE_LIMITS.chatbots,
-      progressColor: "bg-blue-500",
+      progressColor: "bg-zinc-400 dark:bg-zinc-600",
     },
     {
       label: "Storage",
       value: "0 KB / 800 KB",
       sub: "0% of storage capacity used",
-      light: "bg-green-50",
-      dark: "dark:bg-green-900/20",
-      textColor: "text-green-600 dark:text-green-400",
-      numColor: "text-green-700 dark:text-green-300",
+      light: "bg-slate-50 border border-slate-200",
+      dark: "dark:bg-[var(--surface)] dark:border-[var(--border)]",
+      textColor: "text-slate-500 dark:text-slate-400",
+      numColor: "text-slate-900 dark:text-slate-100",
       progress: 0,
-      progressColor: "bg-green-500",
+      progressColor: "bg-zinc-400 dark:bg-zinc-600",
     },
     {
       label: "Conversations",
       value: String(sessions),
       sub: "Total customer conversations",
-      light: "bg-purple-50",
-      dark: "dark:bg-purple-900/20",
-      textColor: "text-purple-600 dark:text-purple-400",
-      numColor: "text-purple-700 dark:text-purple-300",
+      light: "bg-slate-50 border border-slate-200",
+      dark: "dark:bg-[var(--surface)] dark:border-[var(--border)]",
+      textColor: "text-slate-500 dark:text-slate-400",
+      numColor: "text-slate-900 dark:text-slate-100",
     },
   ];
 
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
     <div className="px-8 py-8">
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">Dashboard</h1>
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Dashboard</h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Welcome back! Here&apos;s an overview of your chatbot performance.</p>
         </div>
         <Link href="/dashboard/chatbots" className="btn-secondary !py-2 !px-4 !text-xs !rounded-lg">
@@ -89,11 +89,6 @@ export default async function DashboardPage() {
           <div key={s.label} className={`${s.light} ${s.dark} rounded-2xl p-5 transition-colors`}>
             <p className={`text-sm font-semibold ${s.textColor} mb-2`}>{s.label}</p>
             <p className={`text-3xl font-extrabold ${s.numColor} tracking-tight leading-none mb-2`}>{s.value}</p>
-            {s.progress !== undefined && (
-              <div className="w-full h-1.5 bg-white/60 dark:bg-white/10 rounded-full mb-2 overflow-hidden">
-                <div className={`h-full ${s.progressColor} rounded-full`} style={{ width: `${Math.min(s.progress * 100, 100)}%` }} />
-              </div>
-            )}
             <p className={`text-xs ${s.textColor} opacity-80`}>{s.sub}</p>
           </div>
         ))}

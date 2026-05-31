@@ -15,17 +15,17 @@ export default async function BillingPage() {
   return (
     <div className="px-8 py-8 max-w-5xl">
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
-          Billing &amp; <span className="text-sky-500 dark:text-sky-400">Subscription</span>
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Billing &amp; Subscription
         </h1>
         <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage your subscription plan and billing information.</p>
       </div>
 
       {/* Current plan */}
-      <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-2xl p-6 flex items-center justify-between mb-6 transition-colors">
+      <div className="border border-slate-200 dark:border-slate-800 bg-[var(--surface)] rounded-2xl p-6 flex items-center justify-between mb-6 transition-colors">
         <div>
           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">Current Plan</p>
-          <p className="text-3xl font-extrabold text-sky-500 dark:text-sky-400 capitalize">{user?.plan || "Free"}</p>
+          <p className="text-3xl font-extrabold text-slate-900 dark:text-white capitalize">{user?.plan || "Free"}</p>
         </div>
         <button className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold px-5 py-2.5 rounded-xl hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors text-sm">
           Upgrade Plan
@@ -34,7 +34,7 @@ export default async function BillingPage() {
 
       {/* Usage */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-        <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-2xl p-6 transition-colors">
+        <div className="border border-slate-200 dark:border-slate-800 bg-[var(--surface)] rounded-2xl p-6 transition-colors">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} className="w-5 h-5 text-slate-600 dark:text-slate-400">
@@ -56,7 +56,7 @@ export default async function BillingPage() {
           <p className="text-xs text-slate-400 dark:text-slate-500">Credits reset monthly on your renewal date</p>
         </div>
 
-        <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-2xl p-6 transition-colors">
+        <div className="border border-slate-200 dark:border-slate-800 bg-[var(--surface)] rounded-2xl p-6 transition-colors">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} className="w-5 h-5 text-slate-600 dark:text-slate-400">

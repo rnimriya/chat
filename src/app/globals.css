@@ -11,8 +11,8 @@
 /* ── Clerk-inspired design tokens ──────────────────────────── */
 :root {
   /* Light palette */
-  --bg: #fafafa;
-  --surface: #ffffff;
+  --bg: #ffffff;
+  --surface: #f4f4f5;
   --border: #e4e4e7;
   --border-hi: #d4d4d8;
   --text-1: #09090b;
@@ -48,8 +48,34 @@
   --glow-2: rgba(108, 71, 255, 0.04);
 }
 
-.dark h1 {
+/* All headings in light theme should be black */
+h1, h2, h3, h4, h5, h6 {
+  color: #000000 !important;
+}
+
+.dark h1,
+.dark h1 *,
+.dark h1 span,
+.dark h2,
+.dark h2 *,
+.dark h2 span,
+.dark h3,
+.dark h3 *,
+.dark h3 span,
+.dark h4,
+.dark h4 *,
+.dark h4 span,
+.dark h5,
+.dark h5 *,
+.dark h5 span,
+.dark h6,
+.dark h6 *,
+.dark h6 span {
   color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* ── Base reset ─────────────────────────────────────────────── */

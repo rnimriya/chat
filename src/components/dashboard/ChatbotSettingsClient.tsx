@@ -18,8 +18,8 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
   );
 }
 
-const card = "bg-white dark:bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-[var(--border)] p-6 space-y-5 transition-colors";
-const inputCls = "w-full px-3.5 py-2.5 border border-zinc-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
+const card = "bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-[var(--border)] p-6 space-y-5 transition-colors";
+const inputCls = "w-full px-3.5 py-2.5 border border-zinc-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-[var(--surface)] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
 const labelCls = "block text-sm font-medium text-zinc-700 dark:text-slate-300 mb-1.5";
 const sectionTitle = "font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2";
 
@@ -69,7 +69,7 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
   return (
     <div className="space-y-5">
       {/* Header card */}
-      <div className="flex items-center justify-between bg-white dark:bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] p-5 transition-colors">
+      <div className="flex items-center justify-between bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] p-5 transition-colors">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm" style={{ backgroundColor: form.color }}>
             {form.name.charAt(0).toUpperCase() || "?"}
@@ -162,7 +162,7 @@ export default function ChatbotSettingsClient({ bot }: { bot: Chatbot & { chunkC
       </div>
 
       {/* Danger zone */}
-      <div className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-red-200 dark:border-red-900/50 p-6 transition-colors">
+      <div className="bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-[var(--border)] p-6 transition-colors">
         <h2 className="font-bold text-red-600 dark:text-red-400 mb-1.5">Danger zone</h2>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">Permanently removes all training data and chat history.</p>
         <button onClick={handleDelete} disabled={deleting}

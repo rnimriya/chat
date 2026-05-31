@@ -45,9 +45,9 @@ export default function BillingToggle() {
         {plans.map((plan) => (
           <div
             key={plan.id}
-            className={`rounded-2xl p-6 flex flex-col bg-white dark:bg-[var(--surface)] transition-colors ${
+            className={`rounded-2xl p-6 flex flex-col bg-[var(--surface)] transition-colors ${
               plan.highlight
-                ? "border-2 border-[var(--accent)] dark:border-[var(--accent)]"
+                ? "border-2 border-[var(--border-hi)] dark:border-[var(--border-hi)]"
                 : "border border-slate-200 dark:border-[var(--border)]"
             }`}
           >
@@ -59,7 +59,7 @@ export default function BillingToggle() {
             <ul className="space-y-2.5 mb-6 flex-1">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth={2.5} className="w-4 h-4 shrink-0 mt-0.5">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="w-4 h-4 shrink-0 mt-0.5 text-zinc-500 dark:text-zinc-300">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                   {f}

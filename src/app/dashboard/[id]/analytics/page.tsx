@@ -38,16 +38,16 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
   });
 
   const stats = [
-    { label: "Total messages", value: messages.length, bg: "bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15", text: "text-[var(--accent)]", num: "text-[var(--accent)] font-extrabold" },
-    { label: "Unique sessions", value: sessions.length, bg: "bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15", text: "text-[var(--accent)]", num: "text-[var(--accent)] font-extrabold" },
-    { label: "User questions", value: userMessages.length, bg: "bg-blue-50 dark:bg-blue-900/20", text: "text-blue-600 dark:text-blue-400", num: "text-blue-700 dark:text-blue-300" },
-    { label: "Leads captured", value: leads.length, bg: "bg-emerald-50 dark:bg-emerald-900/20", text: "text-emerald-600 dark:text-emerald-400", num: "text-emerald-700 dark:text-emerald-300" },
+    { label: "Total messages", value: messages.length, bg: "bg-slate-50 dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)]", text: "text-slate-500 dark:text-slate-400", num: "text-slate-900 dark:text-slate-100 font-extrabold" },
+    { label: "Unique sessions", value: sessions.length, bg: "bg-slate-50 dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)]", text: "text-slate-500 dark:text-slate-400", num: "text-slate-900 dark:text-slate-100 font-extrabold" },
+    { label: "User questions", value: userMessages.length, bg: "bg-slate-50 dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)]", text: "text-slate-500 dark:text-slate-400", num: "text-slate-900 dark:text-slate-100 font-extrabold" },
+    { label: "Leads captured", value: leads.length, bg: "bg-slate-50 dark:bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)]", text: "text-slate-500 dark:text-slate-400", num: "text-slate-900 dark:text-slate-100 font-extrabold" },
   ];
 
   return (
     <div className="px-8 py-8 max-w-4xl space-y-6">
       <div>
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">{bot.name} <span className="text-[var(--accent)]">Analytics</span></h1>
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{bot.name} <span className="text-[var(--accent)]">Analytics</span></h1>
         <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Overview of your chatbot&apos;s performance</p>
       </div>
 
@@ -92,12 +92,12 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
           ) : (
             <div className="space-y-2 max-h-[190px] overflow-y-auto pr-1">
               {gaps.map((gap) => (
-                <div key={gap.id} className="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-zinc-900/50 border border-slate-100 dark:border-zinc-800">
+                <div key={gap.id} className="flex items-start justify-between gap-2 p-2.5 rounded-xl bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)]">
                   <div className="min-w-0">
                     <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold truncate">“{gap.question}”</p>
                     <p className="text-[10px] text-zinc-400 mt-0.5">Frequency: {gap.count} times</p>
                   </div>
-                  <span className="text-[9px] bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 font-bold px-2 py-0.5 rounded-md shrink-0">Missing Info</span>
+                  <span className="text-[9px] bg-slate-200 dark:bg-zinc-800 text-amber-700 dark:text-amber-400 font-bold px-2 py-0.5 rounded-md shrink-0">Missing Info</span>
                 </div>
               ))}
             </div>
@@ -164,7 +164,7 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ id: 
                   <p className="text-sm text-slate-700 dark:text-slate-300 font-medium truncate">{s.preview}</p>
                   <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{s.startedAt ? formatDate(s.startedAt) : "unknown"}</p>
                 </div>
-                <span className="text-xs bg-white dark:bg-[var(--bg)] border border-slate-200 dark:border-[var(--border)] text-slate-500 dark:text-slate-400 px-2.5 py-1 rounded-full shrink-0 font-medium">{s.messageCount} msgs</span>
+                <span className="text-xs bg-[var(--surface)] border border-slate-200 dark:border-[var(--border)] text-slate-500 dark:text-slate-400 px-2.5 py-1 rounded-full shrink-0 font-medium">{s.messageCount} msgs</span>
               </div>
             ))}
           </div>

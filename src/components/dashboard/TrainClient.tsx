@@ -10,7 +10,7 @@ const TABS: { key: Tab; label: string; icon: React.ReactNode }[] = [
   { key: "text", label: "Paste text", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z" /></svg> },
 ];
 
-const inputCls = "w-full px-3.5 py-2.5 border border-slate-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-white dark:bg-[var(--surface)] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
+const inputCls = "w-full px-3.5 py-2.5 border border-slate-200 dark:border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)] bg-[var(--surface)] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500";
 
 export default function TrainClient({ botId, initialChunkCount }: { botId: string; initialChunkCount: number }) {
   const [tab, setTab] = useState<Tab>("url");
@@ -48,7 +48,7 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
   return (
     <div className="space-y-5">
       {/* Status card */}
-      <div className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-slate-200 dark:border-[var(--border)] p-5 flex items-center gap-4 transition-colors">
+      <div className="bg-[var(--surface)] rounded-2xl border border-slate-200 dark:border-[var(--border)] p-5 flex items-center gap-4 transition-colors">
         <div className="w-12 h-12 rounded-xl bg-[var(--accent)] flex items-center justify-center shadow-lg shadow-[var(--accent)]/15 dark:shadow-[var(--accent)]/30 shrink-0">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.75} className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
@@ -63,7 +63,7 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
       </div>
 
       {/* Training panel */}
-      <div className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-slate-200 dark:border-[var(--border)] overflow-hidden transition-colors">
+      <div className="bg-[var(--surface)] rounded-2xl border border-slate-200 dark:border-[var(--border)] overflow-hidden transition-colors">
         {/* Tabs */}
         <div className="flex border-b border-slate-100 dark:border-[var(--border)] px-1 pt-1 gap-1">
           {TABS.map((t) => (
@@ -128,14 +128,14 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
           )}
 
           {error && (
-            <div className="mt-4 flex items-center gap-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 text-sm px-4 py-3 rounded-xl">
+            <div className="mt-4 flex items-center gap-2 bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] text-red-600 dark:text-red-400 text-sm px-4 py-3 rounded-xl">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0"><path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 1.999-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.501-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" /></svg>
               {error}
             </div>
           )}
 
           {result && (
-            <div className="mt-4 flex items-center gap-3 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl px-4 py-3.5">
+            <div className="mt-4 flex items-center gap-3 bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] rounded-xl px-4 py-3.5">
               <div className="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center shrink-0">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
               </div>
@@ -155,7 +155,7 @@ export default function TrainClient({ botId, initialChunkCount }: { botId: strin
         </div>
       </div>
 
-      <div className="flex items-start gap-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 rounded-2xl p-4">
+      <div className="flex items-start gap-3 bg-[var(--surface)] border border-zinc-200 dark:border-[var(--border)] rounded-2xl p-4">
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-amber-500 dark:text-amber-400 shrink-0 mt-0.5">
           <path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 1.999-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.501-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
         </svg>

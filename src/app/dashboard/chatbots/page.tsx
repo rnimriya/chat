@@ -11,8 +11,8 @@ export default async function ChatbotsPage() {
     <div className="px-8 py-8">
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
-            My <span className="text-sky-500 dark:text-sky-400">Chatbots</span>
+          <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
+            My Chatbots
           </h1>
           <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-1">
             {bots.length === 0 ? "No chatbots yet" : `${bots.length} chatbot${bots.length !== 1 ? "s" : ""} · ${bots.filter((b) => b.chunkCount > 0).length} trained`}
@@ -36,7 +36,7 @@ export default async function ChatbotsPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {bots.map((bot) => (
-            <div key={bot.id} className="bg-white dark:bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+            <div key={bot.id} className="bg-[var(--surface)] rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
               <div className="p-5">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
